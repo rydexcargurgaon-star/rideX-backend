@@ -1,21 +1,24 @@
-import { TryCatch } from "../middleware/error.js";
-import mailSender from "../features/mailTransporter.js";
 import { sendLog } from "../features/sendLog.js";
+import mailSender from "../features/mailTransporter.js";
+import { TryCatch } from "../middleware/error.js";
+// Adjust the path as needed
 export const sendMail = TryCatch(async (req, res) => {
-    const { email, name, endDateTime, startDateTime, location, phone } = req.body;
-    console.log(req.body);
+    const { email = "", name = "", startDateTime, endDateTime, phone } = req.body;
+    // Basic validation
+    if (!phone) {
+        return sendLog({ message: "Phone number is required" }, res, 400);
+    }
     const result = await mailSender({
-        email,
         name,
-        location,
+        email,
         startDateTime,
         endDateTime,
         phone,
     });
-    if (result.success === true) {
-        return sendLog({ message: "mail sent successfully" }, res);
+    if (result?.success) {
+        return sendLog({ message: "Mail sent successfully" }, res);
     }
     else {
-        return sendLog({ message: "mail not sent" }, res, 400);
+        return sendLog({ message: "Mail not sent" }, res, 400);
     }
 });

@@ -15,18 +15,18 @@ app.get("/health", (req, res) => {
   res.status(200).send("Healthy");
 });
 
-const hitAPI = async () => {
-  try {
-    const response = await axios.get(
-      "https://ridex-backend-2hu0.onrender.com/health"
-    );
-    console.log("API Response:", response.data);
-  } catch (error) {
-    console.error(error);
-  }
-};
+// const hitAPI = async () => {
+//   try {
+//     const response = await axios.get(
+//       "https://ridex-backend-2hu0.onrender.com/health"
+//     );
+//     console.log("API Response:", response.data);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
-setInterval(hitAPI, 10000);
+// setInterval(hitAPI, 10000);
 
 app.listen(port, () => {
   console.log(

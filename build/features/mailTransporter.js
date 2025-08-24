@@ -88,11 +88,6 @@ const mailSender = async ({ email, name, location, startDateTime, endDateTime, p
               <div class="value">${endDateTime}</div>
             </div>
 
-            <div class="field">
-              <div class="label">Location:</div>
-              <div class="value">${location}</div>
-            </div>
-
             <div class="footer">
               Submitted via the Ride Booking Website Contact Form
             </div>
